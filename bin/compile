@@ -58,9 +58,9 @@ fi
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 #cat $APACHE_PATH/conf/httpd.conf
 
-mv httpd /app/.
-mv perl /app/.
-mv www /app/.
+#mv httpd /app/.
+#mv perl /app/.
+#mv www /app/.
 
 echo "-----> list /app"
 ls -al /home/vcap/app
