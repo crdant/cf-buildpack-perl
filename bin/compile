@@ -82,3 +82,8 @@ echo "Launching apache"
 exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
 EOF
 
+
+
+echo "-----> list /app"
+ls -al /home/vcap/app/httpd/modules/
+
