@@ -58,6 +58,38 @@ make
 echo '---> Ready to install Apache2'
 make install
 
+
+
+echo '---> Ready to install APR'
+ # APR
+wget http://mirrors.axint.net/apache//apr/apr-1.4.6.tar.gz
+tar -xvzf apr-1.4.6.tar.gz
+cd apr-1.4.6/
+./configure
+make
+make install
+cd ..
+
+echo '---> Ready to install APR Utils'
+# APR Utils
+wget http://mirrors.axint.net/apache//apr/apr-util-1.4.1.tar.gz
+tar -xvzf apr-util-1.4.1.tar.gz
+cd apr-util-1.4.1
+./configure --with-apr=/usr/local/apr
+make
+make install
+cd ..
+
+echo '---> Ready to install Apache2'
+# Apache
+wget http://apache.petsads.us//httpd/httpd-2.4.1.tar.gz
+tar -xvzf httpd-2.4.1.tar.gz
+
+
+
+
+
+
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
   echo "-----> Bundling Apache"
