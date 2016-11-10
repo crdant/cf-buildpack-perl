@@ -54,7 +54,7 @@ cd httpd-2.4.23
 echo '---> Compiling with Make'
 make -s -j 9
 echo '---> Installing with Make'
-make install -s
+make install -s -C /app
 
 
 #echo '---> Fetching Apache2'
