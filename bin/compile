@@ -50,7 +50,7 @@ curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23-deps.tar.gz | tar xz
 cd httpd-2.4.23
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix=/app
+./configure --prefix=/app/cjd
 echo '---> Compiling with Make'
 make -s -j 9
 echo '---> Installing with Make'
