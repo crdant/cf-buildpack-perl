@@ -41,8 +41,20 @@ fi
 
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
-  echo "-----> Bundling Apache"
-  curl --silent --max-time 60 --location $APACHE_BUNDLE | tar xz
+  echo "-----> Bundling Apache wget"
+  # curl --silent --max-time 60 --location $APACHE_BUNDLE | tar xz
+  wget --progress=dot:mega http://apache.cs.utah.edu//httpd/httpd-2.2.31.tar.gz
+    echo "-----> Bundling Apache tar"
+  tar -zxvf httpd-2.2.31.tar.gz 
+    echo "-----> Bundling Apache cd "
+  cd httpd-2.2.31
+    echo "-----> Bundling Apache configure"
+  ./configure --prefix=/app/httpd --enable-rewrite
+    echo "-----> Bundling Apache make"
+  make
+    echo "-----> Bundling Apache make install"
+  make install
+  
 #
 
 # update config files
