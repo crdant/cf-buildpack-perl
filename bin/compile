@@ -49,7 +49,7 @@ fi
   curl  --location $APACHE_BUNDLE | tar xz
     echo "-----> files extracted here"
     LP_DIR1=`pwd`
-	mv * /app/${APACHE_PATH}/*
+	mv * /app/${APACHE_PATH}/.
 	echo "-----> ls extract"
 	ls -al
 #
