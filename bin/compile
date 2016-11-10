@@ -47,7 +47,9 @@ fi
     echo "-----> Bundling Apache tar"
   tar -zxvf httpd-2.2.31.tar.gz 
     echo "-----> Bundling Apache cd "
-
+	cd httpd-2.2.31
+	echo "-----> Bundling Apache make "
+	make
   
 #
 
