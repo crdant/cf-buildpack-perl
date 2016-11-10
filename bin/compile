@@ -47,13 +47,7 @@ fi
     echo "-----> Bundling Apache tar"
   tar -zxvf httpd-2.2.31.tar.gz 
     echo "-----> Bundling Apache cd "
-  cd httpd-2.2.31
-    echo "-----> Bundling Apache configure"
-  #./configure --prefix=/app/httpd --enable-rewrite
-    echo "-----> Bundling Apache make"
-  make
-    echo "-----> Bundling Apache make install"
-  make install
+
   
 #
 
