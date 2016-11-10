@@ -6,6 +6,7 @@ set -e
 echo "-----> Bundling Apache 0"
 
 APACHE_BUNDLE="http://s3.lstoll.net/buildpacks/httpd_2.2.21-mod_perl_2.0.5.tar.gz"
+MOD_PERL_BUNDLE="http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz"
 
 APACHE_PATH="httpd"
 
@@ -47,9 +48,29 @@ fi
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 
+echo "-----> Done Apache"
+
+echo "-----> Get mod_perl"
+curl --silent --max-time 60 --location $MOD_PERL_BUNDLE | tar xz
+
+echo "-----> change directory mod_perl"
+cd mod_perl-2.0.5
+
+echo "-----> Perl makefile"
+perl Makefile.PL MP_AP_PREFIX=/app/httpd PREFIX=/app/perl #MP_APXS=/app/sw/apache/bin/apxs MP_AP_PREFIX=/app/sw/apache2/
+
+echo "-----> Make"
+make
+
+echo "-----> Make Test"
+make test
+
+echo "-----> Make Install"
+make install
+
 # Add our DirectoryIndex fixup
-mkdir -p $BUILD_DIR/lib/Heroku/
-cp $LP_DIR/conf/IndexFixup.pm $BUILD_DIR/lib/Heroku/
+#mkdir -p $BUILD_DIR/lib/Heroku/
+#cp $LP_DIR/conf/IndexFixup.pm $BUILD_DIR/lib/Heroku/
 
 cat >>boot.sh <<EOF
 sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_PATH}/conf/httpd.conf
