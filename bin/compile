@@ -69,3 +69,16 @@ ls -al /home/vcap/app
 echo "-----> list /app1"
 ls -al /app
 
+cat >>boot.sh <<EOF
+sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_PATH}/conf/httpd.conf
+for var in \`env|cut -f1 -d=\`; do
+  echo "PassEnv \$var" >> /app/${APACHE_PATH}/conf/httpd.conf;
+done
+touch /app/${APACHE_PATH}/logs/error_log
+touch /app/${APACHE_PATH}/logs/access_log
+tail -F /app/${APACHE_PATH}/logs/error_log &
+tail -F /app/${APACHE_PATH}/logs/access_log &
+echo "Launching apache"
+exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
+EOF
+
