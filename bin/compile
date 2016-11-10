@@ -56,7 +56,7 @@ make -s -j 9
 echo '---> Installing with Make'
 make DESTDIR=/app install -s
 
-cd $BUILD_DIR
+
 
 #echo '---> Fetching Apache2'
 #wget --progress=dot:mega http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
@@ -98,17 +98,16 @@ cd $BUILD_DIR
 #tar -xvzf httpd-2.4.23.tar.gz
 
 
-
+cd $BUILD_DIR
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
-#  echo "-----> Bundling Apache"
-#  curl  --location $APACHE_BUNDLE | tar xz
-#    echo "-----> files extracted here"
-#	echo "-----> ls extract"
+echo "-----> Bundling Apache"
+curl  --location $APACHE_BUNDLE | tar xz
+echo "-----> files extracted here"
+echo "-----> ls extract"
 #	echo $PWD
-#	echo "-----> ls -al /tmp/app"
-	
-#	ls -al /tmp/app
+echo "-----> ls -al /tmp/app"
+ls -al /tmp/app
 	
 #
 
