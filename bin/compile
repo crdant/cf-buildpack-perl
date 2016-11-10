@@ -43,7 +43,18 @@ if [ ! -f www/.htaccess ]; then
   cp $LP_DIR/conf/dothtaccess www/.htaccess
 fi
 
+echo 'Downloading Apache $APACHE_VERSION....'
+curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23.tar.gz | tar xz
+curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23-deps.tar.gz | tar xz
 
+cd httpd-2.4.3
+
+#head "Configuring Apache with args: $CONFIGURE_ARGS"
+./configure 
+echo '---> Compiling with Make'
+make -s -j 9 2>&1 | indent
+echo '---> Installing with Make'
+make install -s | indent
 
 
 #echo '---> Fetching Apache2'
@@ -60,30 +71,30 @@ fi
 
 
 
-echo '---> Ready to install APR'
+#echo '---> Ready to install APR'
  # APR
-wget http://apache.cs.utah.edu//apr/apr-1.5.2.tar.gz
-tar -xvzf apr-1.5.2.tar.gz
-cd apr-1.5.2/
-./configure
-make
-make install
-cd ..
+#wget http://apache.cs.utah.edu//apr/apr-1.5.2.tar.gz
+#tar -xvzf apr-1.5.2.tar.gz
+#cd apr-1.5.2/
+#./configure
+#make
+#make install
+#cd ..
 
-echo '---> Ready to install APR Utils'
+#echo '---> Ready to install APR Utils'
 # APR Utils
-wget http://mirrors.advancedhosters.com/apache//apr/apr-util-1.5.4.tar.gz
-tar -xvzf apr-util-1.5.4.tar.gz
-cd apr-util-1.5.4
-./configure --with-apr=/usr/local/apr
-make
-make install
-cd ..
+#wget http://mirrors.advancedhosters.com/apache//apr/apr-util-1.5.4.tar.gz
+#tar -xvzf apr-util-1.5.4.tar.gz
+#cd apr-util-1.5.4
+#./configure --with-apr=/usr/local/apr
+#make
+#make install
+#cd ..
 
-echo '---> Ready to install Apache2'
+#echo '---> Ready to install Apache2'
 # Apache
-wget http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
-tar -xvzf httpd-2.4.23.tar.gz
+#wget http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
+#tar -xvzf httpd-2.4.23.tar.gz
 
 
 
