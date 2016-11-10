@@ -46,7 +46,12 @@ fi
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
   echo "-----> Bundling Apache"
-  curl --silent --max-time 60 --location $APACHE_BUNDLE | tar xz
+  curl  --location $APACHE_BUNDLE | tar xz
+    echo "-----> files extracted here"
+	CJD = 'pwd';
+	echo $CJD
+	echo "-----> ls extract"
+	ls -al
 #
 
 # update config files
