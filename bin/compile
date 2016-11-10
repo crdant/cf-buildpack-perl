@@ -50,10 +50,14 @@ fi
     echo "-----> files extracted here"
 	echo "-----> ls extract"
 	echo $PWD
+	echo "-----> ls -al /tmp/app"
+	
+	ls -al /tmp/app
+	
 #
 
 # update config files
-cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+#cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 #cat $APACHE_PATH/conf/httpd.conf
 
 #mv httpd /app/.
