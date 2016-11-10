@@ -57,7 +57,7 @@ fi
 #
 
 # update config files
-#cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 #cat $APACHE_PATH/conf/httpd.conf
 
 #mv httpd /app/.
