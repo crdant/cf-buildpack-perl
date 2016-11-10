@@ -1,24 +1,21 @@
 #!/usr/bin/env bash
 
-  echo "-----> Bundling Apache 1"
 # fail fast
 set -e
-  echo "-----> Bundling Apache 2"
+
 APACHE_BUNDLE="http://s3.lstoll.net/buildpacks/httpd_2.2.21-mod_perl_2.0.5.tar.gz"
-MOD_PERL_BUNDLE="http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz"
 
 APACHE_PATH="httpd"
 
-  echo "-----> Bundling Apache 3"
 BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
-  echo "-----> Bundling Apache 4"
+
 # include .files when moving things around
 shopt -s dotglob
-  echo "-----> Bundling Apache 5"
+
 cd $BUILD_DIR
-  echo "-----> Bundling Apache 6"
+
 # move app things to www
 mkdir -p $CACHE_DIR/www
 mv * $CACHE_DIR/www
@@ -27,13 +24,11 @@ if [ -f $CACHE_DIR/www/lib ]; then
 fi
 mv $CACHE_DIR/www .
 
-  echo "-----> Bundling Apache 7"
 # keep Procfile
 if [ -f www/Procfile ]; then
   mv www/Procfile .
 fi
 
-  echo "-----> Bundling Apache 8"
 # use our .htaccess if one doesn't exist
 if [ ! -f www/.htaccess ]; then
   cp $LP_DIR/conf/dothtaccess www/.htaccess
@@ -49,18 +44,8 @@ fi
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 
 # Add our DirectoryIndex fixup
-#mkdir -p $BUILD_DIR/lib/Heroku/
-#cp $LP_DIR/conf/IndexFixup.pm $BUILD_DIR/lib/Heroku/
-
-echo '---> Fetching mod_perl'
-curl --silent --max-time 60 --location $MOD_PERL_BUNDLE | tar xz
-echo '---> Building mod_perl'
-#tar -zxvf mod_perl-2.0.5.tar.gz
-cd mod_perl-2.0.5
-perl Makefile.PL MP_AP_PREFIX=/app/httpd PREFIX=/app/perl #MP_APXS=/app/sw/apache/bin/apxs MP_AP_PREFIX=/app/sw/apache2/
-make
-make test
-make install
+mkdir -p $BUILD_DIR/lib/Heroku/
+cp $LP_DIR/conf/IndexFixup.pm $BUILD_DIR/lib/Heroku/
 
 cat >>boot.sh <<EOF
 sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_PATH}/conf/httpd.conf
