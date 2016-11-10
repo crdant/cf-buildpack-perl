@@ -84,6 +84,3 @@ EOF
 
 
 
-echo "-----> list /app"
-ls -al /app/httpd
-
