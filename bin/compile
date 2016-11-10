@@ -82,5 +82,5 @@ echo "Launching apache"
 exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
 EOF
 
-
+cat /app/httpd/conf/httpd.conf
 
