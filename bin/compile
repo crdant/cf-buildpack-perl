@@ -52,7 +52,7 @@ fi
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 
-echo "-----> list /app/httpd"
-ls -al /app/httpd
+echo "-----> list /app"
+ls -al /app
 
 
