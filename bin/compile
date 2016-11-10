@@ -52,9 +52,9 @@ cd httpd-2.4.23
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
 ./configure 
 echo '---> Compiling with Make'
-make -s -j 9 2>&1 | indent
+make -s -j 9
 echo '---> Installing with Make'
-make install -s | indent
+make install -s
 
 
 #echo '---> Fetching Apache2'
