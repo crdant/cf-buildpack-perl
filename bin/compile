@@ -49,7 +49,7 @@ fi
   curl  --location $APACHE_BUNDLE | tar xz
     echo "-----> files extracted here"
     LP_DIR1=`pwd`
-	echo $CJD
+	mv * /app/${APACHE_PATH}/*
 	echo "-----> ls extract"
 	ls -al
 #
@@ -82,5 +82,5 @@ echo "Launching apache"
 exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
 EOF
 
-cat /app/httpd/conf/httpd.conf
+
 
