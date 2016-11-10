@@ -43,6 +43,21 @@ if [ ! -f www/.htaccess ]; then
   cp $LP_DIR/conf/dothtaccess www/.htaccess
 fi
 
+
+
+
+echo '---> Fetching Apache2'
+wget --progress=dot:mega http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
+
+echo '---> Building Apache2'
+tar -zxvf httpd-2.4.23.tar.gz
+cd httpd-2.4.23
+./configure --prefix=/app/httpd --enable-rewrite
+echo '---> Ready to build Apache2'
+make
+echo '---> Ready to install Apache2'
+make install
+
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
   echo "-----> Bundling Apache"
@@ -72,6 +87,7 @@ echo "-----> list /app1"
 ls -al /app
 
 echo "-----> installing apache2 via apt-get"
+echo "-----> list /app1"
 apt-get install apache2
 
 
