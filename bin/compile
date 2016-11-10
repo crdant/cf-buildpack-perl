@@ -52,7 +52,7 @@ mkdir cjdapp
 cd httpd-2.4.23
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix=$BUILD_DIR
+./configure --prefix=$BUILD_DIR/httpd-cjd
 echo '---> Compiling with Make'
 make -s -j 9
 echo '---> Installing with Make'
