@@ -7,7 +7,7 @@ echo "-----> Bundling Apache 0"
 
 APACHE_BUNDLE="http://s3.lstoll.net/buildpacks/httpd_2.2.21-mod_perl_2.0.5.tar.gz"
 MOD_PERL_BUNDLE="http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz"
-APACHE_PATH="httpd-2.4.23"
+APACHE_PATH="httpd"
 
 BUILD_DIR=$1
 CACHE_DIR=$2
@@ -56,6 +56,7 @@ make -s -j 9
 echo '---> Installing with Make'
 make DESTDIR=/app install -s
 
+cd $BUILD_DIR
 
 #echo '---> Fetching Apache2'
 #wget --progress=dot:mega http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
@@ -98,19 +99,16 @@ make DESTDIR=/app install -s
 
 
 
-
-
-
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
-  echo "-----> Bundling Apache"
-  curl  --location $APACHE_BUNDLE | tar xz
-    echo "-----> files extracted here"
-	echo "-----> ls extract"
-	echo $PWD
-	echo "-----> ls -al /tmp/app"
+#  echo "-----> Bundling Apache"
+#  curl  --location $APACHE_BUNDLE | tar xz
+#    echo "-----> files extracted here"
+#	echo "-----> ls extract"
+#	echo $PWD
+#	echo "-----> ls -al /tmp/app"
 	
-	ls -al /tmp/app
+#	ls -al /tmp/app
 	
 #
 
