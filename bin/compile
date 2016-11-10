@@ -85,5 +85,5 @@ EOF
 
 
 echo "-----> list /app"
-ls -al /home/vcap/app/httpd
+ls -al /app/httpd
 
