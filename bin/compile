@@ -7,7 +7,7 @@ echo "-----> Bundling Apache 0"
 
 APACHE_BUNDLE="http://s3.lstoll.net/buildpacks/httpd_2.2.21-mod_perl_2.0.5.tar.gz"
 MOD_PERL_BUNDLE="http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz"
-APACHE_PATH="httpd"
+APACHE_PATH="httpd-2.4.23"
 
 BUILD_DIR=$1
 CACHE_DIR=$2
