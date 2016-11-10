@@ -63,6 +63,6 @@ mv perl /app/.
 mv www /app/.
 
 echo "-----> list /app"
-ls -al /app
+ls -al /home/vcap/app
 
 
