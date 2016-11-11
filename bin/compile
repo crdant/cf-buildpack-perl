@@ -6,7 +6,9 @@ set -e
 echo "-----> Bundling Apache 0"
 
 APACHE_BUNDLE="http://s3.lstoll.net/buildpacks/httpd_2.2.21-mod_perl_2.0.5.tar.gz"
+APACHE_BUNDLE1="https://s3.us-east-2.amazonaws.com/cjd-buildpack/httpd-2.4.23-linux-x64.tgz"
 MOD_PERL_BUNDLE="http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz"
+
 APACHE_PATH="httpd"
 APACHE_CJD_PATH="httpd-cjd"
 
@@ -44,26 +46,24 @@ if [ ! -f www/.htaccess ]; then
   cp $LP_DIR/conf/dothtaccess www/.htaccess
 fi
 
-echo 'Downloading Apache $APACHE_VERSION....'
-curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23.tar.gz | tar xz
-curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23-deps.tar.gz | tar xz
+#echo 'Downloading Apache $APACHE_VERSION....'
+#curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23.tar.gz | tar xz
+#curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23-deps.tar.gz | tar xz
 
 
-cd httpd-2.4.23
+#cd httpd-2.4.23
 
-echo '---> SHOW WHERE HOME IS '
-echo $HOME
+#echo '---> SHOW WHERE HOME IS '
+#echo $HOME
 
-ln -s /tmp/app /home/vcap/app
+#ln -s /tmp/app /home/vcap/app
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix=$BUILD_DIR/httpd-cjd
+#./configure --prefix=$BUILD_DIR/httpd-cjd
 #echo '---> Compiling with Make'
-make -s -j 9
+#make -s -j 9
 #echo '---> Installing with Make'
-make install -s
-
-
+#make install -s
 
 #echo '---> Fetching Apache2'
 #wget --progress=dot:mega http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
@@ -109,7 +109,7 @@ cd $BUILD_DIR
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
 echo "-----> Bundling Apache"
-curl  --location $APACHE_BUNDLE | tar xz
+curl  --location $APACHE_BUNDLE1 | tar xz
 echo "-----> files extracted here"
 echo "-----> ls extract"
 #	echo $PWD
