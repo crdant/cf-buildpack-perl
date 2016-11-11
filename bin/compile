@@ -78,6 +78,10 @@ echo '---> Ready to install Apache2'
 make install -s
 
 
+cd $BUILD_DIR
+mv $BUILD_DIR/httpd-2.4.23/httpd .
+
+
 
 #echo '---> Ready to install APR'
  # APR
