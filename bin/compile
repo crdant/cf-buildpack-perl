@@ -109,7 +109,7 @@ cd $BUILD_DIR
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
 echo "-----> Bundling Apache"
-curl  --location $APACHE_BUNDLE1 | tar xz
+curl  --location $APACHE_BUNDLE | tar xz
 echo "-----> files extracted here"
 echo "-----> ls extract"
 #	echo $PWD
@@ -119,13 +119,13 @@ ls -al /tmp/app
 #
 
 # update config files
-#cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 #cat $APACHE_PATH/conf/httpd.conf
 
 # update config files
-cp $LP_DIR/conf/cjd.conf $APACHE_PATH/conf
-cp $APACHE_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
-cat $APACHE_PATH/conf/httpd.conf
+#cp $LP_DIR/conf/cjd.conf $APACHE_PATH/conf
+#cp $APACHE_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
+#cat $APACHE_PATH/conf/httpd.conf
 
 #mv httpd /app/.
 #mv perl /app/.
@@ -164,7 +164,7 @@ tail -F /app/${APACHE_PATH}/logs/access_log &
 
 
 echo "Launching apache"
-exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
+exec ~/app/${APACHE_PATH}/bin/httpd -DNO_DETACH
 #/app/${APACHE_PATH}/bin/apachectl -k start
 EOF
 
