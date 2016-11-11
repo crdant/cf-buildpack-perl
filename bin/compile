@@ -59,11 +59,12 @@ cd httpd-2.4.23
 ln -s /app /tmp/app
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure 
+./configure --prefix=$BUILD_DIR/httpd-cjd
 echo '---> Compiling with Make'
 make -s -j 9
 echo '---> Installing with Make'
 make install -s
+
 
 
 
