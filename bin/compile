@@ -61,11 +61,8 @@ ls -al /tmp/app
 
 # update config files
 cp $LP_DIR/conf/cjd.conf $APACHE_PATH/conf
-cp $APACHE_CJD_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
+cp $APACHE_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
 cat $APACHE_PATH/conf/httpd.conf
-
-
-
 
 echo "-----> list /app"
 ls -al /home/vcap/app
