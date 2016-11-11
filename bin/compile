@@ -56,7 +56,7 @@ cd httpd-2.4.23
 #echo '---> SHOW WHERE HOME IS '
 #echo $HOME
 
-ln -s /app /tmp/app
+#ln -s /app /tmp/app
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
 ./configure --prefix=$BUILD_DIR/httpd-cjd
@@ -64,8 +64,6 @@ echo '---> Compiling with Make'
 make -s -j 9
 echo '---> Installing with Make'
 make install -s
-
-
 
 
 #echo '---> Fetching Apache2'
@@ -133,9 +131,9 @@ cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 cat $APACHE_PATH/conf/httpd.conf
 
 # update config files
-#cp $LP_DIR/conf/cjd.conf cjdhttp/$APACHE_PATH/conf
-#cp cjdhttp/$APACHE_PATH/conf/cjd.conf cjdhttp/$APACHE_PATH/conf/httpd.conf
-#cat cjdhttp/$APACHE_PATH/conf/httpd.conf
+cp $LP_DIR/conf/cjd.conf $APACHE_CJD_PATH/conf
+cp $APACHE_CJD_PATH/conf/cjd.conf $APACHE_CJD_PATH/conf/httpd.conf
+cat $APACHE_CJD_PATH/conf/httpd.conf
 
 
 #-C /target/directory
@@ -155,6 +153,10 @@ echo "-----> installing apache2 via apt-get"
 echo "-----> list /app1"
 #apt-get install apache2
 
+echo "-----> list /app1"
+LD_LIBRARY_PATH="/app/httpd-cjd/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH
+echo $LD_LIBRARY_PATH
 
 cat >>boot.sh <<EOF
 sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_PATH}/conf/httpd.conf
@@ -166,34 +168,24 @@ touch /app/${APACHE_PATH}/logs/access_log
 tail -F /app/${APACHE_PATH}/logs/error_log &
 tail -F /app/${APACHE_PATH}/logs/access_log &
 
-#sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_CJD_PATH}/conf/httpd.conf
-#for var in \`env|cut -f1 -d=\`; do
-#  echo "PassEnv \$var" >> /app/${APACHE_CJD_PATH}/conf/httpd.conf;
-#done
-#touch /app/${APACHE_CJD_PATH}/logs/error_log
-#touch /app/${APACHE_CJD_PATH}/logs/access_log
-#tail -F /app/${APACHE_CJD_PATH}/logs/error_log &
-#tail -F /app/${APACHE_CJD_PATH}/logs/access_log &
-
-
 echo "Launching apache"
 exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
 #/app/cjdhttp/${APACHE_PATH}/bin/apachectl -k start
 EOF
 
 
-#cat >>boot-cjd.sh <<EOF
-#sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_CJD_PATH}/conf/httpd.conf
-#for var in \`env|cut -f1 -d=\`; do
-#  echo "PassEnv \$var" >> /app/${APACHE_CJD_PATH}/conf/httpd.conf;
-#done
-#touch /app/${APACHE_CJD_PATH}/logs/error_log
-#touch /app/${APACHE_CJD_PATH}/logs/access_log
-#tail -F /app/${APACHE_CJD_PATH}/logs/error_log &
-#tail -F /app/${APACHE_CJD_PATH}/logs/access_log &
-#echo "Launching apache"
-#/app/${APACHE_CJD_PATH}/bin/apachectl -k start
-#EOF
+cat >>boot-cjd.sh <<EOF
+sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_CJD_PATH}/conf/httpd.conf
+for var in \`env|cut -f1 -d=\`; do
+  echo "PassEnv \$var" >> /app/${APACHE_CJD_PATH}/conf/httpd.conf;
+done
+touch /app/${APACHE_CJD_PATH}/logs/error_log
+touch /app/${APACHE_CJD_PATH}/logs/access_log
+tail -F /app/${APACHE_CJD_PATH}/logs/error_log &
+tail -F /app/${APACHE_CJD_PATH}/logs/access_log &
+echo "Launching apache"
+/app/${APACHE_CJD_PATH}/bin/apachectl -k start
+EOF
 
 
 
