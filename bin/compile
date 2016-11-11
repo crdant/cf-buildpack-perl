@@ -46,101 +46,26 @@ if [ ! -f www/.htaccess ]; then
   cp $LP_DIR/conf/dothtaccess www/.htaccess
 fi
 
-#echo 'Downloading Apache $APACHE_VERSION....'
-curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23.tar.gz | tar xz
-curl -L http://www.us.apache.org/dist/httpd/httpd-2.4.23-deps.tar.gz | tar xz
-
-
-cd httpd-2.4.23
-
-#echo '---> SHOW WHERE HOME IS '
-#echo $HOME
-
-#ln -s /app /tmp/app
-
-#head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix=$BUILD_DIR/httpd-cjd
-echo '---> Compiling with Make'
-make -s -j 9
-echo '---> Installing with Make'
-make install -s
-
-
-#echo '---> Fetching Apache2'
-#wget --progress=dot:mega http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
-
-#echo '---> Building Apache2'
-#tar -zxvf httpd-2.4.23.tar.gz
-#cd httpd-2.4.23
-#./configure --prefix=/app/httpd --enable-rewrite
-#echo '---> Ready to build Apache2'
-#make -s -j 9
-#echo '---> Ready to install Apache2'
-#make install -s
-
-
-#cd $BUILD_DIR
-#mv $BUILD_DIR/httpd-2.4.23/httpd .
-
-
-
-#echo '---> Ready to install APR'
- # APR
-#wget http://apache.cs.utah.edu//apr/apr-1.5.2.tar.gz
-#tar -xvzf apr-1.5.2.tar.gz
-#cd apr-1.5.2/
-#./configure
-#make
-#make install
-#cd ..
-
-#echo '---> Ready to install APR Utils'
-# APR Utils
-#wget http://mirrors.advancedhosters.com/apache//apr/apr-util-1.5.4.tar.gz
-#tar -xvzf apr-util-1.5.4.tar.gz
-#cd apr-util-1.5.4
-#./configure --with-apr=/usr/local/apr
-#make
-#make install
-#cd ..
-
-#echo '---> Ready to install Apache2'
-# Apache
-#wget http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
-#tar -xvzf httpd-2.4.23.tar.gz
 
 
 cd $BUILD_DIR
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
 echo "-----> Bundling Apache"
-curl  --location $APACHE_BUNDLE | tar xz
+curl  --location $APACHE_BUNDLE1 | tar xz
 echo "-----> files extracted here"
 echo "-----> ls extract"
 echo $PWD
 echo "-----> ls -al /tmp/app"
 ls -al /tmp/app
 
-# install apache if needed
-#echo "-----> Bundling Apache"
-#mkdir cjdhttp
-#curl  --location $APACHE_BUNDLE1 | tar xz -C cjdhttp
-
 # update config files
-cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+cp $LP_DIR/conf/cjd.conf $APACHE_PATH/conf
+cp $APACHE_CJD_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
 cat $APACHE_PATH/conf/httpd.conf
 
-# update config files
-cp $LP_DIR/conf/cjd.conf $APACHE_CJD_PATH/conf
-cp $APACHE_CJD_PATH/conf/cjd.conf $APACHE_CJD_PATH/conf/httpd.conf
-cat $APACHE_CJD_PATH/conf/httpd.conf
 
 
-#-C /target/directory
-
-#mv httpd /app/.
-#mv perl /app/.
-#mv www /app/.
 
 echo "-----> list /app"
 ls -al /home/vcap/app
@@ -153,10 +78,6 @@ echo "-----> installing apache2 via apt-get"
 echo "-----> list /app1"
 #apt-get install apache2
 
-echo "-----> list /app1"
-LD_LIBRARY_PATH="/app/httpd-cjd/lib:$LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH
-echo $LD_LIBRARY_PATH
 
 cat >>boot.sh <<EOF
 sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_PATH}/conf/httpd.conf
@@ -169,23 +90,12 @@ tail -F /app/${APACHE_PATH}/logs/error_log &
 tail -F /app/${APACHE_PATH}/logs/access_log &
 
 echo "Launching apache"
-exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
-#/app/cjdhttp/${APACHE_PATH}/bin/apachectl -k start
+#exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
+/app/${APACHE_PATH}/bin/apachectl -k start
 EOF
 
 
-cat >>boot-cjd.sh <<EOF
-sed -i 's/Listen 80/Listen '\$PORT'/' /app/${APACHE_CJD_PATH}/conf/httpd.conf
-for var in \`env|cut -f1 -d=\`; do
-  echo "PassEnv \$var" >> /app/${APACHE_CJD_PATH}/conf/httpd.conf;
-done
-touch /app/${APACHE_CJD_PATH}/logs/error_log
-touch /app/${APACHE_CJD_PATH}/logs/access_log
-tail -F /app/${APACHE_CJD_PATH}/logs/error_log &
-tail -F /app/${APACHE_CJD_PATH}/logs/access_log &
-echo "Launching apache"
-/app/${APACHE_CJD_PATH}/bin/apachectl -k start
-EOF
+
 
 
 
