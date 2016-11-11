@@ -118,6 +118,7 @@ ls -al /tmp/app
 
 # install apache if needed
 echo "-----> Bundling Apache"
+mkdir cjdhttp
 curl  --location $APACHE_BUNDLE1 | tar xz -C cjdhttp
 
 # update config files
