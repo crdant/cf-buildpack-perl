@@ -112,13 +112,13 @@ make install -s
 cd $BUILD_DIR
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
-#echo "-----> Bundling Apache"
-#curl  --location $APACHE_BUNDLE | tar xz
-#echo "-----> files extracted here"
-#echo "-----> ls extract"
-#	echo $PWD
-#echo "-----> ls -al /tmp/app"
-#ls -al /tmp/app
+echo "-----> Bundling Apache"
+curl  --location $APACHE_BUNDLE | tar xz
+echo "-----> files extracted here"
+echo "-----> ls extract"
+echo $PWD
+echo "-----> ls -al /tmp/app"
+ls -al /tmp/app
 
 # install apache if needed
 #echo "-----> Bundling Apache"
@@ -126,8 +126,8 @@ cd $BUILD_DIR
 #curl  --location $APACHE_BUNDLE1 | tar xz -C cjdhttp
 
 # update config files
-#cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
-#cat $APACHE_PATH/conf/httpd.conf
+cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+cat $APACHE_PATH/conf/httpd.conf
 
 # update config files
 #cp $LP_DIR/conf/cjd.conf cjdhttp/$APACHE_PATH/conf
