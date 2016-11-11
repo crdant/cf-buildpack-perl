@@ -164,7 +164,7 @@ tail -F /app/${APACHE_PATH}/logs/access_log &
 
 
 echo "Launching apache"
-exec ~/app/${APACHE_PATH}/bin/httpd -DNO_DETACH
+exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
 #/app/${APACHE_PATH}/bin/apachectl -k start
 EOF
 
