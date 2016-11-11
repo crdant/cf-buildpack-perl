@@ -56,7 +56,7 @@ echo '---> SHOW WHERE HOME IS '
 echo $HOME
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix={$HOME}/httpd-cjd
+./configure --prefix=$HOME/httpd-cjd
 #echo '---> Compiling with Make'
 make -s -j 9
 #echo '---> Installing with Make'
