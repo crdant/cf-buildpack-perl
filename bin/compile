@@ -69,8 +69,8 @@ cd httpd-2.4.23
 #wget --progress=dot:mega http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
 
 #echo '---> Building Apache2'
-tar -zxvf httpd-2.4.23.tar.gz
-cd httpd-2.4.23
+#tar -zxvf httpd-2.4.23.tar.gz
+#cd httpd-2.4.23
 ./configure --prefix=/app/httpd --enable-rewrite
 echo '---> Ready to build Apache2'
 make -s -j 9
