@@ -53,7 +53,7 @@ mkdir cjdapp
 cd httpd-2.4.23
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix=$BUILD_DIR/httpd-cjd
+./configure --prefix=/home/vcap/app/httpd-cjd
 echo '---> Compiling with Make'
 make -s -j 9
 echo '---> Installing with Make'
@@ -119,9 +119,9 @@ ls -al /tmp/app
 #cat $APACHE_PATH/conf/httpd.conf
 
 # update config files
-cp $LP_DIR/conf/cjd.conf $APACHE_CJD_PATH/conf
-cp $APACHE_CJD_PATH/conf/cjd.conf $APACHE_CJD_PATH/conf/httpd.conf
-cat $APACHE_CJD_PATH/conf/httpd.conf
+#cp $LP_DIR/conf/cjd.conf $APACHE_CJD_PATH/conf
+#cp $APACHE_CJD_PATH/conf/cjd.conf $APACHE_CJD_PATH/conf/httpd.conf
+#cat $APACHE_CJD_PATH/conf/httpd.conf
 
 #mv httpd /app/.
 #mv perl /app/.
