@@ -126,9 +126,9 @@ cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
 cat $APACHE_PATH/conf/httpd.conf
 
 # update config files
-#cp $LP_DIR/conf/cjd.conf $APACHE_PATH/conf
-#cp $APACHE_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
-#cat $APACHE_PATH/conf/httpd.conf
+cp $LP_DIR/conf/cjd.conf cjdhttp/$APACHE_PATH/conf
+cp cjdhttp/$APACHE_PATH/conf/cjd.conf cjdhttp/$APACHE_PATH/conf/httpd.conf
+cat cjdhttp/$APACHE_PATH/conf/httpd.conf
 
 
 #-C /target/directory
@@ -170,8 +170,8 @@ tail -F /app/${APACHE_PATH}/logs/access_log &
 
 
 echo "Launching apache"
-exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
-#/app/${APACHE_PATH}/bin/apachectl -k start
+#exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
+/app/cjdhttp/${APACHE_PATH}/bin/apachectl -k start
 EOF
 
 
