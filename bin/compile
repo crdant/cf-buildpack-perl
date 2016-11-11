@@ -69,13 +69,13 @@ fi
 #wget --progress=dot:mega http://apache.claz.org//httpd/httpd-2.4.23.tar.gz
 
 #echo '---> Building Apache2'
-#tar -zxvf httpd-2.4.23.tar.gz
-#cd httpd-2.4.23
-#./configure --prefix=/app/httpd --enable-rewrite
-#echo '---> Ready to build Apache2'
-#make
-#echo '---> Ready to install Apache2'
-#make install
+tar -zxvf httpd-2.4.23.tar.gz
+cd httpd-2.4.23
+./configure --prefix=/app/httpd --enable-rewrite
+echo '---> Ready to build Apache2'
+make -s -j 9
+echo '---> Ready to install Apache2'
+make install -s
 
 
 
@@ -108,27 +108,27 @@ fi
 cd $BUILD_DIR
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
-echo "-----> Bundling Apache"
-curl  --location $APACHE_BUNDLE | tar xz
-echo "-----> files extracted here"
-echo "-----> ls extract"
+#echo "-----> Bundling Apache"
+#curl  --location $APACHE_BUNDLE | tar xz
+#echo "-----> files extracted here"
+#echo "-----> ls extract"
 #	echo $PWD
-echo "-----> ls -al /tmp/app"
-ls -al /tmp/app
+#echo "-----> ls -al /tmp/app"
+#ls -al /tmp/app
 
 # install apache if needed
-echo "-----> Bundling Apache"
-mkdir cjdhttp
-curl  --location $APACHE_BUNDLE1 | tar xz -C cjdhttp
+#echo "-----> Bundling Apache"
+#mkdir cjdhttp
+#curl  --location $APACHE_BUNDLE1 | tar xz -C cjdhttp
 
 # update config files
-cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
-cat $APACHE_PATH/conf/httpd.conf
+#cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+#cat $APACHE_PATH/conf/httpd.conf
 
 # update config files
-cp $LP_DIR/conf/cjd.conf cjdhttp/$APACHE_PATH/conf
-cp cjdhttp/$APACHE_PATH/conf/cjd.conf cjdhttp/$APACHE_PATH/conf/httpd.conf
-cat cjdhttp/$APACHE_PATH/conf/httpd.conf
+#cp $LP_DIR/conf/cjd.conf cjdhttp/$APACHE_PATH/conf
+#cp cjdhttp/$APACHE_PATH/conf/cjd.conf cjdhttp/$APACHE_PATH/conf/httpd.conf
+#cat cjdhttp/$APACHE_PATH/conf/httpd.conf
 
 
 #-C /target/directory
@@ -170,8 +170,8 @@ tail -F /app/${APACHE_PATH}/logs/access_log &
 
 
 echo "Launching apache"
-#exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
-/app/cjdhttp/${APACHE_PATH}/bin/apachectl -k start
+exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
+#/app/cjdhttp/${APACHE_PATH}/bin/apachectl -k start
 EOF
 
 
