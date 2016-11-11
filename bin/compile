@@ -57,7 +57,7 @@ echo $HOME
 ln -s /tmp/app /home/vcap/app
 
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix=$HOME/httpd-cjd
+./configure --prefix=$BUILD_DIR/httpd-cjd
 #echo '---> Compiling with Make'
 make -s -j 9
 #echo '---> Installing with Make'
