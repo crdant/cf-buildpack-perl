@@ -119,13 +119,13 @@ ls -al /tmp/app
 #
 
 # update config files
-cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
-cat $APACHE_PATH/conf/httpd.conf
+#cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
+#cat $APACHE_PATH/conf/httpd.conf
 
 # update config files
-#cp $LP_DIR/conf/cjd.conf $APACHE_CJD_PATH/conf
-#cp $APACHE_CJD_PATH/conf/cjd.conf $APACHE_CJD_PATH/conf/httpd.conf
-#cat $APACHE_CJD_PATH/conf/httpd.conf
+cp $LP_DIR/conf/cjd.conf $APACHE_PATH/conf
+cp $APACHE_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
+cat $APACHE_PATH/conf/httpd.conf
 
 #mv httpd /app/.
 #mv perl /app/.
