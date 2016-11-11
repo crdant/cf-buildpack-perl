@@ -52,12 +52,15 @@ mkdir cjdapp
 
 cd httpd-2.4.23
 
+echo '---> SHOW WHERE HOME IS '
+echo $HOME
+
 #head "Configuring Apache with args: $CONFIGURE_ARGS"
-./configure --prefix=httpd-cjd
-echo '---> Compiling with Make'
-make -s -j 9
-echo '---> Installing with Make'
-make install -s
+#./configure --prefix=httpd-cjd
+#echo '---> Compiling with Make'
+#make -s -j 9
+#echo '---> Installing with Make'
+#make install -s
 
 
 
