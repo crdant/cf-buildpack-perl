@@ -8,7 +8,7 @@ echo "-----> Bundling Apache 0"
 APACHE_BUNDLE="http://s3.lstoll.net/buildpacks/httpd_2.2.21-mod_perl_2.0.5.tar.gz"
 APACHE_BUNDLE1="https://s3.us-east-2.amazonaws.com/cjd-buildpack/httpd-2.4.23-linux-x64.tgz"
 
-APACHE_BUNDLE2="https://s3.us-east-2.amazonaws.com/cjd-buildpack/httpd-2.4.23_mod_perl.tgz"
+APACHE_BUNDLE2="https://s3.us-east-2.amazonaws.com/cjd-buildpack/httpd_perl.tgz"
 
 
 MOD_PERL_BUNDLE="http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz"
