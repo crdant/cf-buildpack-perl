@@ -67,7 +67,7 @@ echo "-----> ls -al /tmp/app"
 ls -al /tmp/app
 
 
-cp /usr/lib/bin/libperl.so* /tmp/app/httpd/lib
+cp /usr/lib/libperl.so* /tmp/app/httpd/lib
 
 
 # update config files
