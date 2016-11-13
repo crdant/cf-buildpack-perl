@@ -66,6 +66,10 @@ echo $PWD
 echo "-----> ls -al /tmp/app"
 ls -al /tmp/app
 
+
+cp /usr/lib/bin/libperl.so* /tmp/app/httpd/lib
+
+
 # update config files
 cp $LP_DIR/conf/cjd.conf $APACHE_PATH/conf
 cp $APACHE_PATH/conf/cjd.conf $APACHE_PATH/conf/httpd.conf
