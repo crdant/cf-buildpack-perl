@@ -5,17 +5,14 @@ set -e
 
 echo "-----> Bundling Apache 0"
 
-APACHE_BUNDLE="http://s3.lstoll.net/buildpacks/httpd_2.2.21-mod_perl_2.0.5.tar.gz"
-APACHE_BUNDLE1="https://s3.us-east-2.amazonaws.com/cjd-buildpack/httpd-2.4.23-linux-x64.tgz"
-APACHE_BUNDLE2="https://s3.us-east-2.amazonaws.com/cjd-buildpack/httpd_perl.tgz"
-MOD_PERL_BUNDLE="http://perl.apache.org/dist/mod_perl-2.0.5.tar.gz"
-MOD_PERL_BUNDLE1="http://apache.mirrors.pair.com/perl/mod_perl-2.0.10.tar.gz"
+APACHE_BUNDLE="https://s3.us-east-2.amazonaws.com/cjd-buildpack/httpd-2.4.23-linux-x64.tgz"
 
 APACHE_PATH="httpd"
-APACHE_CJD_PATH="httpd-cjd"
+
 
 BUILD_DIR=$1
 CACHE_DIR=$2
+
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 echo "-----> build dir...."
@@ -56,7 +53,7 @@ cd $BUILD_DIR
 # install apache if needed
 # if [ ! -d $APACHE_PATH ]; then
 echo "-----> Bundling Apache"
-curl  --location $APACHE_BUNDLE1 | tar xz
+curl  --location $APACHE_BUNDLE | tar xz
 echo "-----> files extracted here"
 echo "-----> ls extract"
 echo $PWD
@@ -82,9 +79,3 @@ echo "Launching apache"
 #exec /app/${APACHE_PATH}/bin/httpd -DNO_DETACH
 /app/${APACHE_PATH}/bin/apachectl -k start
 EOF
-
-
-
-
-
-
