@@ -38,7 +38,7 @@ if [ -f $CACHE_DIR/www/lib ]; then
 fi
 mv $CACHE_DIR/www .
 
-chmod a+x $CACHE_DIR/www/*.pl
+chmod a+x *.pl
 
 # keep Procfile
 if [ -f www/Procfile ]; then
